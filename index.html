@@ -1,0 +1,151 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>Backbone Contacts Manager</title>
+ 
+        <!--[if lt IE 9]> HTML5Shiv
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+ 		<style type="text/css" media="screen">
+ 			.hero-unit {
+ 				height: 100%;
+ 				min-height: 649px;
+ 				padding: 60px;
+ 				margin-bottom: 30px;
+ 				font-size: 18px;
+ 				font-weight: 200;
+ 				line-height: 30px;
+ 				text-align: center;
+ 				vertical-align: middle;
+ 				color: inherit;
+ 				background-color: #eeeeee;
+ 				-webkit-border-radius: 6px;
+ 			   	-moz-border-radius: 6px;
+ 			        	border-radius: 6px;
+ 			}
+ 		
+ 			.hero-unit h1 {
+ 				margin-bottom: 0;
+ 				font-size: 60px;
+ 				line-height: 1;
+ 				letter-spacing: -1px;
+ 				color: inherit;
+ 			}
+ 		
+ 			.hero-unit li {
+ 				line-height: 30px;
+ 			}
+
+ 			.table td {
+ 				text-align: left;
+ 			}
+
+ 			.table tr {
+ 				position: relative;
+ 			}
+            .table tbody tr:hover {
+                background: #F0E7CB;
+            }
+ 			.table tr .close {
+ 				position: absolute;
+ 				left: -35px;
+ 			}
+ 			.row {
+ 				position: relative;
+ 			}
+            .table .controls, .table .confirmation {
+                font-size: 16px;
+                color: #09629E;
+                text-align: center;
+            }
+            .done, .cancel {
+                cursor: pointer;
+                margin: 0px 10px;
+            }
+            .done:hover, .cancel:hover {
+                text-decoration: underline;
+            }
+            .done, .edit {
+                color: green;
+            }
+            .cancel {
+                color: gray;
+            }
+            .delete {
+                color: red;
+            }
+            .highlight {
+                background: #F0E7CB;
+            }
+            #contacts header {
+                text-align: left;
+            }
+            #contact_empty {
+                position: relative;
+                height: 40px;
+            }
+            #contact_empty p {
+                position: absolute;
+                top: 70%;
+                left: 45%;
+            }
+ 		</style>
+    </head>
+    <body>
+    	<div class="hero-unit">
+    		<div id="contacts" class="row">
+                <header>
+                   <span>Total number of contacts: <span class="count">0</span></span> 
+                </header>
+	    		<table class="table">
+	    			<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Contact Number</th>
+							<th>Username</th>
+                            <th></th>
+						</tr>
+    				</thead>
+    				<tbody>
+    					<tr id="inputs">
+    						<td><button id="add_contact" data-toggle="tooltip" title="Add contact">+</button></td>
+    						<td><input type="text" name="fullname"></td>
+    						<td><input type="text" name="number"></td>
+    						<td><input type="text" name="username"></td>
+    					</tr>
+    				</tbody>
+	    		</table>
+	    	</div>
+    	</div>
+    </body>
+    <script type="text/template" id="contact_template">
+        <td><%= position %></td>
+        <td><%= name %></td>
+        <td><%= number %></td>
+        <td><%= username %></td>
+        <td class="controls"><a href="#" class="edit">Edit</a> | <a href="#" class="delete">Delete</a></td>
+    </script>
+    <script type="text/template" id="edit_mode_template">
+        <td><%= position %></td>
+        <td><input type="text" name="fullname" value="<%= name %>"></td>
+        <td><input type="text" name="number" value="<%= number %>"></td>
+        <td><input type="text" name="username" value="<%= username %>"></td>
+        <td class="confirmation"><span class="done">Done</span><span class="cancel">Cancel</span></td>
+    </script>
+    <script type="text/template" id="contact_empty_template">
+        <p>Hello! No contacts.</p>
+    </script>
+    <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+    <script type="text/javascript" src="bower_components/marionette/lib/backbone.marionette.js"></script>
+  	<script type="text/javascript" src="scripts/main-marionette.js"></script>
+</html>

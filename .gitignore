@@ -1,0 +1,5 @@
+node_modules/
+creds.js
+.DS_Store
+scripts/.DS_Store
+bower_components/

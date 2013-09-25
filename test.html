@@ -1,0 +1,46 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+ 
+        <!--[if lt IE 9]> HTML5Shiv
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+ 
+    </head>
+    <body>
+        <h1>Backbone Zombie Test</h1>
+    </body>
+	<script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript" src="bower_components/backbone/backbone.js"></script>
+    <script type="text/javascript">
+
+        var ZombieView = Backbone.View.extend({
+            initialize: function () {
+                this.listenTo(this.model, 'change', this.alertChange)
+            },
+            alertChange: function () {
+                alert('I have changed: ' + this.model.cid);
+            },
+            close: function () {
+                this.stopListening();
+            }
+        });
+
+        var Model = Backbone.Model.extend({});
+        var m = new Model();
+        var z = new ZombieView({model: m});
+        
+        z.close();
+        z = new ZombieView({model: m});
+
+        m.set('name', 'Juan');
+    </script>
+ </html>
